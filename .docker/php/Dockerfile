@@ -2,6 +2,9 @@
 ## busterのDebian10は使わずに検証
 FROM php:8.2-fpm
 
+## オペキャッシュをインストール
+RUN docker-php-ext-install opcache
+
 ## appディレクトリの作成
 RUN mkdir /app
 
