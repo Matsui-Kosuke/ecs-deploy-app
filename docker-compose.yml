@@ -9,3 +9,5 @@ services:
       dockerfile: .docker/php/Dockerfile # docker/php/Dockerfileのなかの内容でimageを作成
     volumes:
       - ./:/app  # カレントディレクトリの内容をphpのimageの中にマウント(コピー)
+      - .docker/php/php.ini:/usr/local/etc/php/php.ini
+
