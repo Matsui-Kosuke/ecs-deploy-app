@@ -10,4 +10,12 @@ services:
     volumes:
       - ./:/app  # カレントディレクトリの内容をphpのimageの中にマウント(コピー)
       - .docker/php/php.ini:/usr/local/etc/php/php.ini
-
+  nginx:
+    container_name: ecs-nginx
+    ports:
+      - "80:80" ## ホスト名だけでアクセスできるようにしたいので、httpの80ポート、host側を変える場合は他の変更箇所なし
+    build: ## コンテナ側のportを変えるときは、default.confのlistenの変更必要、ホスト側が変更するとlocalhost:portでアクセス可能
+      context: .
+      dockerfile: .docker/nginx/Dockerfile  #dockerfile内でimageをbuild
+    depends_on:
+      - app
