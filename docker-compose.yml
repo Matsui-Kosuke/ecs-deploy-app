@@ -14,16 +14,16 @@ services:
         - mysql
 
   nginx:
-      container_name: ecs-nginx
-      ports:
-        - "80:80" ## ホスト名だけでアクセスできるようにしたいので、httpの80ポート、host側を変える場合は他の変更箇所なし
-      build: ## コンテナ側のportを変えるときは、default.confのlistenの変更必要、ホスト側が変更するとlocalhost:portでアクセス可能
-        context: .
-        dockerfile: .docker/nginx/Dockerfile  #dockerfile内でimageをbuild
-      volumes:
-        - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      depends_on:
-        - app
+    container_name: ecs-nginx
+    ports:
+      - "80:80" ## ホスト名だけでアクセスできるようにしたいので、httpの80ポート、host側を変える場合は他の変更箇所なし
+    build: ## コンテナ側のportを変えるときは、default.confのlistenの変更必要、ホスト側が変更するとlocalhost:portでアクセス可能
+      context: .
+      dockerfile: .docker/nginx/Dockerfile  #dockerfile内でimageをbuild
+    volumes:
+      - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
 
   mysql:
     container_name: ecs-mysql
