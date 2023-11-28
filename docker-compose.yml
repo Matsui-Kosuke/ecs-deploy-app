@@ -31,10 +31,10 @@ services:
         - "3306:3306"
     build:
         context: .
-        dockerfile: .docker/mysql/Dockerfile
+        dockerfile: .docker/mysql/Dockerfile # docker/mysql/Dockerfileのなかの内容でimageを作成
     environment:
-        MYSQL_ROOT_PASSWORD: password
-        MYSQL_USER: user
-        MYSQL_PASSWORD: password
+        MYSQL_ROOT_PASSWORD: password #rootユーザーのパスワード
+        MYSQL_USER: user #userのユーザー名
+        MYSQL_PASSWORD: password #userのパスワード
     volumes:
         - .docker/mysql/db/:/var/lib/mysql/ #永続化させるために記述、mysqlサーバ側fileなどをホストにマウントさせる
