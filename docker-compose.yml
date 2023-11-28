@@ -38,3 +38,4 @@ services:
         MYSQL_PASSWORD: password #userのパスワード
     volumes:
         - .docker/mysql/db/:/var/lib/mysql/ #永続化させるために記述、mysqlサーバ側fileなどをホストにマウントさせる
+        - .docker/mysql/my.cnf:/etc/mysql/conf.d/my.conf #mysqlの設定を記述
