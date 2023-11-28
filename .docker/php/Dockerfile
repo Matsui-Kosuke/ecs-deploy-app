@@ -8,6 +8,8 @@ RUN docker-php-ext-install opcache
 ## composer install際に、gitをインストールしないとエラーが出るためインストール
 RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
+RUN docker-php-ext-install pdo pdo_mysql
+
 ## appディレクトリの作成
 RUN mkdir /app
 
