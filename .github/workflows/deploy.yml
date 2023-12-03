@@ -1,0 +1,12 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+      - feat/push_images_to_ecr  # TODO 動作検証後削除
+
+jobs:
+  deploy:
+    name: Deploy app to AWS Fargate
+    runs-on: ubuntu-latest
