@@ -2,6 +2,8 @@
 ## busterのDebian10は使わずに検証
 FROM php:8.2-fpm
 
+EXPOSE 5173
+
 ## オペキャッシュをインストール
 RUN docker-php-ext-install opcache
 
@@ -20,3 +22,8 @@ WORKDIR /app
 ## composer installできるようにDocker に Composer をインストール
 ## composer installがないとlaravelのwelcomeページ表示できない
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+## nodejsのインストール
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt install -y nodejs
+RUN npm install --global yarn

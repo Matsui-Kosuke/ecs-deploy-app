@@ -4,6 +4,7 @@ services:
     container_name: ecs-app
     ports:
       - "9000:9000" ## php-fpmはデフォルトで9000番ポート
+      - "5173:5173" ## viteを利用するためのポート
     build:
       context: .
       dockerfile: .docker/php/Dockerfile # docker/php/Dockerfileのなかの内容でimageを作成
