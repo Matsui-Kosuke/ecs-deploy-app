@@ -41,3 +41,15 @@ services:
     volumes:
         - .docker/mysql/db/:/var/lib/mysql/ #永続化させるために記述、mysqlサーバ側fileなどをホストにマウントさせる
         - .docker/mysql/my.cnf:/etc/mysql/conf.d/my.conf #mysqlの設定を記述
+
+  minio:
+      image: minio/minio
+      container_name: ecs-minio
+      ports:
+          - "9001:9001"
+          - "9002:9002"
+      environment:
+          MINIO_ROOT_USER: access_key
+          MINIO_ROOT_PASSWORD: secret_key
+      entrypoint: bash
+      command: -c "/usr/bin/minio server /export --address :9001 --console-address :9002"
